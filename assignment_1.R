@@ -120,3 +120,13 @@ mse_train_model_step <- mean((train_data$realSum - pred_train_model_step)^2)
 
 mse_test_model_full <- mean((test_data$realSum - pred_test_model_full)^2)
 mse_test_model_step <- mean((test_data$realSum - pred_test_model_step)^2)
+
+########:
+
+predictions_full <- predict(model_full, newdata = test_data) # computing the prediction errors in test_data, so we keep the model but interchange the data source
+
+predictions_step <- predict(model_step, newdata = test_data)
+
+mse_train_full <- mean((train_data$realSum - predict(model_full))^2)
+mse_test_full <- mean((test_data$realSum - predictions_full)^2)
+mse_train_full
