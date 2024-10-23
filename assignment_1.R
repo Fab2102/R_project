@@ -95,34 +95,7 @@ test_data = data[-for_training,]
 # testing_model3_stepwise = predict(model3_oos_stepwise, newdata = test_data)
 # testing_model3_MSE_stepwise = mean((test_data$realSum - testing_model3_stepwise)^2)
 
-
-
-
-Mögkichkeit?
-
-total_rows <- nrow(data)
-eighty_percent <- floor(0.8 * total_rows)
-set.seed(123)
-
-for_training <- sample(1:total_rows, eighty_percent, replace = FALSE)
-
-train_data = data[for_training,]
-test_data = data[-for_training,]
-
-model_full <- lm(realSum ~ ., data = train_data)
-model_step <- step(model_full, direction = "backward")
-
-pred_test_model_test = predict(model_full, newdata = test_data)
-pred_test_model_test_stepwise = predict(model_step, newdata = test_data)
-
-mse_train_model_train <- mean((train_data$realSum - pred_train_model_train)^2)
-mse_train_model_train_stepwise <- mean((train_data$realSum - pred_train_model_train_stepwise)^2)
-
-mse_test_model_test <- mean((test_data$realSum - pred_test_model_test)^2)
-mse_test_model_test_stepwise <- mean((test_data$realSum - pred_test_model_test_stepwise)^2)
-
-
-Maybe better:
+############ Task 6 VERBESSERT ############
 
 total_rows <- nrow(data)
 eighty_percent <- floor(0.8 * total_rows)
