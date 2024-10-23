@@ -120,3 +120,30 @@ mse_train_model_train_stepwise <- mean((train_data$realSum - pred_train_model_tr
 
 mse_test_model_test <- mean((test_data$realSum - pred_test_model_test)^2)
 mse_test_model_test_stepwise <- mean((test_data$realSum - pred_test_model_test_stepwise)^2)
+
+
+Maybe better:
+
+total_rows <- nrow(data)
+eighty_percent <- floor(0.8 * total_rows)
+set.seed(123)
+
+for_training <- sample(1:total_rows, eighty_percent, replace = FALSE)
+
+train_data <- data[for_training,]
+test_data <- data[-for_training,]
+
+model_full <- lm(realSum ~ ., data = train_data)
+model_step <- step(model_full, direction = "backward")
+
+pred_train_model_full <- predict(model_full, newdata = train_data)
+pred_train_model_step <- predict(model_step, newdata = train_data)
+
+pred_test_model_full = predict(model_full, newdata = test_data)
+pred_test_model_step = predict(model_step, newdata = test_data)
+
+mse_train_model_full <- mean((train_data$realSum - pred_train_model_full)^2)
+mse_train_model_step <- mean((train_data$realSum - pred_train_model_step)^2)
+
+mse_train_model_full <- mean((train_data$realSum - pred_train_model_full)^2)
+mse_train_model_step <- mean((train_data$realSum - pred_train_model_step)^2)
