@@ -95,3 +95,36 @@ test_data = data[-for_training,]
 # testing_model3_stepwise = predict(model3_oos_stepwise, newdata = test_data)
 # testing_model3_MSE_stepwise = mean((test_data$realSum - testing_model3_stepwise)^2)
 
+
+
+
+Mögkichkeit?
+
+total_rows <- nrow(data)
+eighty_percent <- floor(0.8 * total_rows)
+set.seed(123)
+
+for_training <- sample(1:total_rows, eighty_percent, replace = FALSE)
+
+train_data = data[for_training,]
+test_data = data[-for_training,]
+
+model_train <- lm(___, data = train_data)
+model_test <- lm(___, data = test_data)
+
+
+model_train_stepwise <- step(model_train, direction = "backward")
+model_test_stepwise <- step(model_test, direction = "backward")
+
+
+pred_train_model_train = predict(model_train, newdata = train_data)
+pred_train_model_stepwise = predict(model_train_stepwise, newdata = train_data)
+
+pred_test_model_test = predict(model1_oos_stepwise, newdata = test_data)
+pred_test_model_test_stepwise = predict(model_test_stepwise, newdata = test_data)
+
+mse_train_model_train <- mean((train_data$realSum - pred_train_model_train)^2)
+mse_train_model_train_stepwise <- mean((train_data$realSum - pred_train_model_train_stepwise)^2)
+
+mse_test_model_test <- mean((test_data$realSum - pred_test_model_test)^2)
+mse_test_model_test_stepwise <- mean((test_data$realSum - pred_test_model_test_stepwise)^2)
