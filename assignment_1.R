@@ -120,7 +120,7 @@ model_test_stepwise <- step(model_test, direction = "backward")
 pred_train_model_train = predict(model_train, newdata = train_data)
 pred_train_model_stepwise = predict(model_train_stepwise, newdata = train_data)
 
-pred_test_model_test = predict(model1_oos_stepwise, newdata = test_data)
+pred_test_model_test = predict(model_test, newdata = test_data)
 pred_test_model_test_stepwise = predict(model_test_stepwise, newdata = test_data)
 
 mse_train_model_train <- mean((train_data$realSum - pred_train_model_train)^2)
