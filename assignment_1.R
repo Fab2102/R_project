@@ -112,12 +112,8 @@ test_data = data[-for_training,]
 model_full <- lm(realSum ~ ., data = train_data)
 model_step <- step(model_full, direction = "backward")
 
-
-pred_train_model_train = predict(model_train, newdata = train_data)
-pred_train_model_stepwise = predict(model_train_stepwise, newdata = train_data)
-
-pred_test_model_test = predict(model_test, newdata = test_data)
-pred_test_model_test_stepwise = predict(model_test_stepwise, newdata = test_data)
+pred_test_model_test = predict(model_full, newdata = test_data)
+pred_test_model_test_stepwise = predict(model_step, newdata = test_data)
 
 mse_train_model_train <- mean((train_data$realSum - pred_train_model_train)^2)
 mse_train_model_train_stepwise <- mean((train_data$realSum - pred_train_model_train_stepwise)^2)
