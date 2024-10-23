@@ -145,5 +145,5 @@ pred_test_model_step = predict(model_step, newdata = test_data)
 mse_train_model_full <- mean((train_data$realSum - pred_train_model_full)^2)
 mse_train_model_step <- mean((train_data$realSum - pred_train_model_step)^2)
 
-mse_train_model_full <- mean((train_data$realSum - pred_train_model_full)^2)
-mse_train_model_step <- mean((train_data$realSum - pred_train_model_step)^2)
+mse_test_model_full <- mean((test_data$realSum - pred_test_model_full)^2)
+mse_test_model_step <- mean((test_data$realSum - pred_test_model_step)^2)
