@@ -109,12 +109,8 @@ for_training <- sample(1:total_rows, eighty_percent, replace = FALSE)
 train_data = data[for_training,]
 test_data = data[-for_training,]
 
-model_train <- lm(___, data = train_data)
-model_test <- lm(___, data = test_data)
-
-
-model_train_stepwise <- step(model_train, direction = "backward")
-model_test_stepwise <- step(model_test, direction = "backward")
+model_full <- lm(realSum ~ ., data = train_data)
+model_step <- step(model_full, direction = "backward")
 
 
 pred_train_model_train = predict(model_train, newdata = train_data)
